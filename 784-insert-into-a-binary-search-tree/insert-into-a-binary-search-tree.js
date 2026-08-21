@@ -11,14 +11,26 @@
  * @param {number} val
  * @return {TreeNode}
  */
-var insertIntoBST = function(root, val) {
+var insertIntoBST = function (root, val) {
     if (root === null) return new TreeNode(val);
-    
-    if (val < root.val) {
-        root.left = insertIntoBST(root.left, val);
-    } else {
-        root.right = insertIntoBST(root.right, val);
+
+    let curr = root;
+
+    while (true) {
+        if (val < curr.val) {
+            if (curr.left === null) {
+                curr.left = new TreeNode(val);
+                break;
+            }
+            curr = curr.left;
+        } else {
+            if (curr.right === null) {
+                curr.right = new TreeNode(val);
+                break;
+            }
+            curr = curr.right;
+        }
     }
-    
+
     return root;
 };
